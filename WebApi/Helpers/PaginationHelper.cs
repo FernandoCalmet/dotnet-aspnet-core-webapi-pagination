@@ -1,24 +1,51 @@
-﻿namespace WebApi.Helpers;
+﻿using WebApi.Contracts;
 
-public static class PaginationHelper
+namespace WebApi.Helpers;
+
+public class PaginationHelper : IPaginationHelper
 {
-    public static PagedResponse<List<T>> CreatePagedReponse<T>(List<T> pagedData, PaginationFilter validFilter, int totalRecords, IUriService uriService, string route)
+    public PagedResponse<List<T>> CreatePagedResponse<T>(List<T> pagedData, PaginationFilter validFilter, int totalRecords, IUriService uriService, string route)
     {
-        var respose = new PagedResponse<List<T>>(pagedData, validFilter.PageNumber, validFilter.PageSize);
-        var totalPages = ((double)totalRecords / (double)validFilter.PageSize);
-        int roundedTotalPages = Convert.ToInt32(Math.Ceiling(totalPages));
-        respose.NextPage =
-            validFilter.PageNumber >= 1 && validFilter.PageNumber < roundedTotalPages
-            ? uriService.GetPageUri(new PaginationFilter(validFilter.PageNumber + 1, validFilter.PageSize), route)
+        var response = CreatePagedResponse(pagedData, validFilter);
+        AddPageData(response, validFilter, totalRecords, uriService, route);
+
+        return response;
+    }
+
+    private static PagedResponse<List<T>> CreatePagedResponse<T>(List<T> pagedData, PaginationFilter validFilter)
+    {
+        return new PagedResponse<List<T>>(pagedData, validFilter.PageNumber, validFilter.PageSize);
+    }
+
+    private static void AddPageData<T>(PagedResponse<List<T>> response, PaginationFilter validFilter, int totalRecords, IUriService uriService, string route)
+    {
+        var totalPages = CalculateTotalPages(totalRecords, validFilter.PageSize);
+
+        response.NextPage = CreateNextPageUri(validFilter, totalPages, uriService, route);
+        response.PreviousPage = CreatePreviousPageUri(validFilter, totalPages, uriService, route);
+        response.FirstPage = uriService.GetPageUri(new PaginationFilter(1, validFilter.PageSize), route);
+        response.LastPage = uriService.GetPageUri(new PaginationFilter(totalPages, validFilter.PageSize), route);
+        response.TotalPages = totalPages;
+        response.TotalRecords = totalRecords;
+    }
+
+    private static int CalculateTotalPages(int totalRecords, int pageSize)
+    {
+        var totalPages = (totalRecords / (double)pageSize);
+        return Convert.ToInt32(Math.Ceiling(totalPages));
+    }
+
+    private static Uri CreateNextPageUri(PaginationFilter filter, int totalPages, IUriService uriService, string route)
+    {
+        return filter.PageNumber >= 1 && filter.PageNumber < totalPages
+            ? uriService.GetPageUri(new PaginationFilter(filter.PageNumber + 1, filter.PageSize), route)
             : null;
-        respose.PreviousPage =
-            validFilter.PageNumber - 1 >= 1 && validFilter.PageNumber <= roundedTotalPages
-            ? uriService.GetPageUri(new PaginationFilter(validFilter.PageNumber - 1, validFilter.PageSize), route)
+    }
+
+    private static Uri CreatePreviousPageUri(PaginationFilter filter, int totalPages, IUriService uriService, string route)
+    {
+        return filter.PageNumber - 1 >= 1 && filter.PageNumber <= totalPages
+            ? uriService.GetPageUri(new PaginationFilter(filter.PageNumber - 1, filter.PageSize), route)
             : null;
-        respose.FirstPage = uriService.GetPageUri(new PaginationFilter(1, validFilter.PageSize), route);
-        respose.LastPage = uriService.GetPageUri(new PaginationFilter(roundedTotalPages, validFilter.PageSize), route);
-        respose.TotalPages = roundedTotalPages;
-        respose.TotalRecords = totalRecords;
-        return respose;
     }
 }
