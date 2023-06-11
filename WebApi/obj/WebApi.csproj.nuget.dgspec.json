@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\FernandoCalmet\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\WebApi.csproj": {}
+    "D:\\Projects\\test\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "D:\\Github\\FernandoCalmet\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\WebApi.csproj": {
+    "D:\\Projects\\test\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\FernandoCalmet\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "D:\\Projects\\test\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "D:\\Github\\FernandoCalmet\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\WebApi.csproj",
-        "packagesPath": "C:\\Users\\I7\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\FernandoCalmet\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\obj\\",
+        "projectPath": "D:\\Projects\\test\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\WebApi.csproj",
+        "packagesPath": "C:\\Users\\Fernando\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\test\\dotnet-6-aspnet-core-webapi-pagination\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\I7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Fernando\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,7 +70,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -81,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

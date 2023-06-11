@@ -1,4 +1,4 @@
-﻿namespace WebApi.Services;
+﻿namespace WebApi.Contracts;
 
 public interface IUriService
 {
