@@ -20,14 +20,16 @@ Data migration:
 ```bash
 dotnet ef database update
 ```
+
 Generate a new migration in the migrations directory:
 
 ```bash
-dotnet ef migrations add NewMigration --context ApplicationDbContext --output-dir Data/Migrations/
+dotnet ef migrations add InitialCreate --context ApplicationDbContext --output-dir Data/Migrations
 ```
 
 ## 📓 THEORETICAL OVERVIEW
-What is Pagination? Why is it Important?
+
+### What is Pagination? Why is it Important?
 Imagine having an API endpoint that could return millions of records in a single request. Suppose hundreds of users hit this endpoint simultaneously, requesting all the data at once. This could severely overload your server, causing various problems, including security risks.
 
 An ideal API endpoint should allow its consumers to retrieve only a specific number of records at a time. By doing so, we avoid overloading our Database Server, the CPU hosting the API, and network bandwidth. This feature is crucial for any API, especially public ones.
